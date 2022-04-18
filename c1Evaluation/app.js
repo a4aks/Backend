@@ -10,9 +10,11 @@ function logger(req,res,next){
 function checkPermisson(param){
     return function(req,res,next){
        if(param === "author"){
-       next()
+           req.permission = "true";
+        next()
        }
        else if(param === "librarian"){
+        req.permission = "true";
        next()
        }
        else{
@@ -26,21 +28,19 @@ app.use("/libraries", checkPermisson("librarian"));
 app.use("/authors", checkPermisson("author"));
 
 app.get('/books',(request,response,next) =>{
-   response.json({route: "/books"})
+    const name = `{ route: ${request.url}}`
+    response.send(`${name}`);
 })
 
 app.get('/libraries' , (request,response,next) =>{
-    response.json({
-        route: "/libraries",
-        permision: "true"
-    })
+    const name = `{ route: ${request.url}, permission: ${request.permission} }`
+    response.send(`${name}`);
 })
 
 app.get('/authors', (request,response,next) =>{
-   response.json({
-       route: "/authors",
-       permision: "true"
-   })
+
+  const name = `{ route: ${request.url}, permission: ${request.permission} }`
+   response.send(`${name}`);
 })
 
 module.exports = app;
