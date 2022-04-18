@@ -10,9 +10,9 @@ function logger(req,res,next){
 function checkPermisson(param){
     return function(req,res,next){
        if(param === "author"){
-        callback(null, true);
+       next()
        }else if(param === "librarian"){
-        callback(null, true);
+       next()
        }
        else{
         callback(new Error("Origin not allowed"))
@@ -21,17 +21,18 @@ function checkPermisson(param){
 }
 
 app.use(logger);
-app.use(checkPermisson);
+app.use("/libraries", checkPermisson("librarian"));
+app.use("/authors", checkPermisson("author"));
 
 app.get('/books',(request,response,next) =>{
-    response.send("Hello");
+    response.send("Books");
 })
 
-app.get('/libraries',[checkPermisson("librarian")] , (request,response,next) =>{
+app.get('/libraries' , (request,response,next) =>{
     response.send("Liabries");
 })
 
-app.get('/authors', [checkPermisson("author")], (request,response,next) =>{
+app.get('/authors', (request,response,next) =>{
     response.send("Authors");
 })
 
