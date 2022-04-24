@@ -1,0 +1,28 @@
+// MongoDB
+
+db.createCollecton("assignment");
+
+use assignment
+db.users.insertMany([
+    {first_name:"Sumit",last_name:"Kumar",email:"sumit@gmail.com",gender:"male",ip_address:"123.234.456",age:"27"},
+    {first_name:"Kriti",last_name:"Ranjan", email:"kriti@gmail.com", gender:"female", ip_address:"123", age:"27"}
+    ])
+
+db.users.find({}).pretty()
+
+db.users.insertMany([
+    {first_name:"Saurav",last_name:"Kumar",email:"saurav@gmail.com",gender:"male",ip_address:"123.234.456",age:"28"},
+    {first_name:"Ruchi",last_name:"Kumari", email:"ruchi@gmail.com", gender:"female", ip_address:"123", age:"29"}
+    ])
+
+ db.users.findOne({gender:"female"})
+{
+        "_id" : ObjectId("62653a9455741556f5c606ec"),
+        "first_name" : "Kriti",
+        "last_name" : "Ranjan",
+        "email" : "kriti@gmail.com",
+        "gender" : "female",
+        "ip_address" : "123",
+        "age" : "27"
+}
+
