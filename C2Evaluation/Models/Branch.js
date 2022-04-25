@@ -9,4 +9,4 @@ const branch = new mongoose.Scheme ({
     "updatedAt": {type:Date, required:true},
 })
 
-module.exports = mongoose.model('user',user);
+module.exports = mongoose.model('branch',branch);

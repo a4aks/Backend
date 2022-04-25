@@ -1,5 +1,5 @@
 const http = require('http');
-const app = require('./app');
+const app = require('./Routes/user');
 const connectToDB = require('./DBConnection/MangoDB');
 
 const PORT = 9008;
