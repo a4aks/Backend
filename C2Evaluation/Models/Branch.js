@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const branch = new mongoose.Scheme ({
+const branch = new mongoose.Schema ({
     "name": {type :String, required: true},
     "address": {type:String, required: true},
     "IFSC":{type :String, required: true},

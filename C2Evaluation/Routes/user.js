@@ -9,6 +9,8 @@ app.use(bodyParser.json([]));
 
 app.post('/user', userController.createUser);
 app.post('/branch', userController.createBranch);
+app.post('/savingAccount/:userId', userController.createSavingAccount);
+
 
 
 module.exports = app;
