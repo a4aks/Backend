@@ -34,7 +34,6 @@ async function createBranch(req, res, next) {
         let userDetail = req.body;
         let response = await BranchModel.insertMany([userDetail]);
         res.json(response);
-
     } 
     catch (error) {
         res.json(error);
@@ -50,7 +49,8 @@ async function createSavingAccount(req, res, next) {
         let master = await MasterModel.find({userId:userId});
         let response = await SavingAccountModel.insertMany([userDetail]);
         let branch = await BranchModel.find({});
-        let balance = master[0].balance + response[0].balance;
+        let balance = Number(master[0].balance) + Number(response[0].balance);
+        console.log(balance)
         let masterAccount = {
             userId: userId,
             branchId:branch[0]._id,
