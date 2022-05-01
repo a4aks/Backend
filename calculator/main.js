@@ -15,3 +15,5 @@ console.log(`Multiply:  ${result3}`);
 
 let result4 = div(20,10);
 console.log(`Divide: ${result4}`);
+
+console.log(add);

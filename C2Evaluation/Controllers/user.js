@@ -50,7 +50,6 @@ async function createSavingAccount(req, res, next) {
         let response = await SavingAccountModel.insertMany([userDetail]);
         let branch = await BranchModel.find({});
         let balance = Number(master[0].balance) + Number(response[0].balance);
-        console.log(balance)
         let masterAccount = {
             userId: userId,
             branchId:branch[0]._id,
