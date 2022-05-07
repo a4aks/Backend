@@ -56,10 +56,28 @@ async function saveImage(req,res,next){
 
  }
 
+ async function getAllBooks(req, res, next) {
+    try {
+        const pageNo = req.query.pageNo;
+        const pageSize = req.query.pageSize;
+
+        const skip = ((pageNo-1) * pageSize)|| 0;
+
+        const limit = req.query.limit || 10;
+        console.log(`limit & skip: ${limit} ${skip}`);
+        let response = await bookModel.find({}).skip(skip).limit(limit);
+        res.json(response);
+      
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 
 module.exports = {
     createUser,
     createBook,
     addComments,
-    saveImage
+    saveImage,
+    getAllBooks
 }

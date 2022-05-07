@@ -28,6 +28,7 @@ app.post('/addUser', userController.createUser);
 app.post('/addBook', userController.createBook);
 app.post('/addComment', userController.addComments)
 app.post('/saveImage', upload.single('file'), userController.saveImage)
+app.get('/getBooks', userController.getAllBooks)
 
 
 module.exports = app;
