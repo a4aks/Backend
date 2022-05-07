@@ -21,6 +21,7 @@ async function createUser(req, res, next){
 async function createBook(req, res, next){
     try{
         req.body.userId = mongoose.Types.ObjectId(req.body.userId)
+        req.body.timestamps = new Date();
         let response = await bookModel.insertMany([req.body]);
         res.status(200).json(response)
 
@@ -30,13 +31,35 @@ async function createBook(req, res, next){
 }
 
 async function addComments(req,res, next){
-    req.body.bookId = mongoose.Types.ObjectId(req.body.bookId)
-    let response = await commentModel.insertMany([req.body]);
+    try{
+        req.body.bookId = mongoose.Types.ObjectId(req.body.bookId)
+        req.body.timestamps = new Date();
+        let response = await commentModel.insertMany([req.body]);
+        await bookModel.updateOne({_id:req.body.bookId}, {$push:{comments : response[0]._id}})
+        res.status(200).json(response);
+
+    }catch (error) {
+        res.json(error);
+    }
 }
+
+async function saveImage(req,res,next){
+    console.log("Request FIle", req.file);
+
+    req.body.userId = mongoose.Types.ObjectId(req.body.userId);
+    await userModel.updateOne({_id: req.body.userId}, {$push: {profileImages: req.file.path}})
+     res.json({
+         "message": "Images Saved",
+         path: req.file.path
+     })
+     res.status(200).json(response);
+
+ }
 
 
 module.exports = {
     createUser,
     createBook,
-    addComments
+    addComments,
+    saveImage
 }

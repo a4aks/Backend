@@ -7,7 +7,7 @@ const user = new mongoose.Schema({
     "age": { type: Number, required: true },
     "email": { type: String, required: true },
     "profileImages" : [{type: String}],
-    "timestamps": {type : String}
+    "timestamps": {type : String, required: true}
 });
 
 module.exports = mongoose.model('user', user);

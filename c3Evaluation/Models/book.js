@@ -6,7 +6,7 @@ const book = new mongoose.Schema({
     "likes": { type: Number, min:[0] },
     "coverImage": { type: String},
     "content": { type: String, required: true},
-    "timestamps": { type: String},
+    "timestamps": { type: String, required: true},
     "comments": [{ type: mongoose.Schema.Types.ObjectId, ref: 'comment' }]
 });
 
