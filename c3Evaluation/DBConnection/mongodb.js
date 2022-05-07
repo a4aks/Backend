@@ -6,7 +6,7 @@ class Mongo {
     }
 
     createMongoConnection() {
-        mongoose.connect(`mongodb+srv://masaistudent:masaipassword@cluster0.i0oz4.mongodb.net/masai?retryWrites=true&w=majority`)
+        mongoose.connect(`mongodb+srv://masaistudent:masaipassword@cluster0.i0oz4.mongodb.net/books?retryWrites=true&w=majority`)
 
 
         mongoose.connection.once('open', () => {
